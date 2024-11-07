@@ -1,0 +1,31 @@
+<h3>Listado de heroes</h3>
+
+
+@if(deleteHero){
+<h3>Héroe borrado <small class="text-danger">{{deleteHero}}</small></h3>
+}@else {
+<h3>No ha borrado nada.</h3>
+}
+
+<!-- PARECE SER QUE NO FUNCIONA CON NO STANDALONE YA QUE SE NECESITA IMPORTAR NgTemplateOutlet y no
+ ES POSIBLE CON NO STANDALONE -->
+<!--
+@if(deleteHero){
+<h3>Héroe borrado <small class="text-danger">{{deleteHero}}</small></h3>
+}@else {
+<ng-container *ngTemplateOutlet="nothingWasDeleted"></ng-container>
+} -->
+
+@if(heroesNames.length!=0){
+<button (click)="removeLastHero()" class="btn btn-outline-danger">Borrar último heroe</button>
+}
+
+<ul class="mt-2 list-group">
+  @for (hero of heroesNames; track $index) {
+  <li class="list-group-item">{{hero}}</li>
+  }
+</ul>
+
+<ng-template #nothingWasDeleted>
+  <h3>No ha borrado nada.</h3>
+</ng-template>
